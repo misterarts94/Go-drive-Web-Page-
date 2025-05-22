@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('./a1f71cd2-8ebf-4aa0-b408-002de2820e01.jpeg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+     
+
+    .container {
+      width: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      position: relative;
+    }
+
+    .toggle-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      position: relative;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .toggle-buttons button {
+      flex: 1;
+      padding: 10px;
+      background: transparent;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      z-index: 2;
+      transition: color 0.3s ease;
+    }
+
+    .toggle-indicator {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background: #0e0d0d;
+      border-radius: 30px;
+      transition: left 0.4s ease;
+      z-index: 1;
+    }
+
+    form {
+      display: none;
+      color: white;
+    }
+
+    form.active {
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .check-box {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .check-box input {
+      margin-right: 8px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 20px;
+      background: #00ff95;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .logo {
+      position: absolute;
+      top: 5px;
+      left: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .main-header {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #00ffae;
+}
+
+.nav-menu a {
+  margin-left: 30px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: #00ffae;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .nav-menu a {
+    margin: 0;
+  }
+}
+
+  </style>
+</head>
+<body>
+     <!-- Header -->
+
+  <header class="main-header">
+  <div class="header-container">
+    <div class="logo">Registration Page</div>
+    <nav class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="#">Setting</a>
+      <a href="index.html.contact">About Us</a>
+      <a href="index.html">Log Out</a>
+    </nav>
+  </div>
+</header>
+
+  <div class="container">
+    <div class="logo">PROFESSIONAL FPS </div>
+    <div class="toggle-buttons">
+      <div class="toggle-indicator" id="indicator"></div>
+      <button onclick="toggleForm('login')">Login</button>
+      <button onclick="toggleForm('register')">Register</button>
+    </div>
+
+    <form id="loginForm" class="active">
+      <input type="text" placeholder="Email ID" required />
+      <input type="password" placeholder="Password" required />
+      <div class="check-box">
+        <input type="checkbox" /> Remember Me
+      </div>
+      <button class="submit-btn">Log In</button>
+    </form>
+
+    <form id="registerForm">
+      <input type="text" placeholder="First Name" required />
+      <input type="text" placeholder="Last Name" required />
+      <input type="email" placeholder="Email ID" required />
+      <input type="password" placeholder="Password" required />
+      <input type="password" placeholder="Confirm Password" required />
+      <div class="check-box">
+        <input type="checkbox" /> I agree to the terms and conditions
+      </div>
+      <button class="submit-btn">Register</button>
+    </form>
+  </div>
+
+  
+  <script>
+  // Toggle login/register forms
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+  const indicator = document.getElementById("indicator");
+
+  function toggleForm(form) {
+    if (form === "login") {
+      loginForm.classList.add("active");
+      registerForm.classList.remove("active");
+      indicator.style.left = "0";
+    } else {
+      loginForm.classList.remove("active");
+      registerForm.classList.add("active");
+      indicator.style.left = "50%";
+    }
+  }
+
+  // Register form validation
+  document.querySelector("#registerForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const pwd = this.querySelector('input[placeholder="Password"]').value;
+    const confirmPwd = this.querySelector('input[placeholder="Confirm Password"]').value;
+
+    if (pwd !== confirmPwd) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    alert("Registered successfully!");
+    this.reset();
+    toggleForm("login");
+  });
+
+  // Dummy login handler
+  document.querySelector("#loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    alert("Login successful (dummy alert).");
+  });
+</script>
+</body>
+</html>
+
